@@ -23,10 +23,10 @@ export class MainPageComponent {
     //
     // Called when the Captcha has finished
     //
-    private onCaptchaComplete(data: string) {
+    private onCaptchaComplete(response: string) {
 
         console.log('reCAPTCHA response recieved:');
-        console.log(data);
+        console.log(response);
     }
     /* tslint:disable:no-unused-variable */
 }

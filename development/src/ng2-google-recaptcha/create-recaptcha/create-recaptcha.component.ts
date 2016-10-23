@@ -42,12 +42,12 @@ export class CreateRecaptchaComponent implements OnInit {
         if (data != null) {
             this.onCaptchaComplete.emit({
                 success: true,
-                data: data,
+                token: data,
             });
         } else {
             this.onCaptchaComplete.emit({
                 success: false,
-                data: null,
+                token: null,
             });
         }
     }
