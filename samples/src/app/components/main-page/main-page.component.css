@@ -1,0 +1,25 @@
+.samples-screen-title {
+    text-align: center;
+    padding: 0px;
+
+    width: 100%;
+}
+
+.samples-screen-title-text {
+    padding-top: 30px;
+    font-size: 60px;
+}
+
+.samples-screen-body-text {
+    font-size: 14px;
+}
+
+.recaptcha-container {
+
+    position: relative;
+
+    width: 304;
+    top: 50px;
+
+    margin: 0 auto;
+}

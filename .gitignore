@@ -1,0 +1,12 @@
+development/node_modules
+development/typings
+development/src/**/*.js.map
+development/src/**/*.js
+development/src/**/*.d.ts
+release
+*.pyc
+samples/node_modules
+samples/typings
+samples/src/**/*.js.map
+samples/src/**/*.js
+samples/src/**/*.d.ts

@@ -1,0 +1,12 @@
+<div class="samples-screen-title">
+	<p class="samples-screen-title-text">ng2-google-recaptcha samples</p><br>
+	<p class="samples-screen-body-text">A small set of reCAPTCHA samples</p>
+
+	<div class="recaptcha-container">
+        <p class="samples-screen-body-text">Standard reCAPTCHA out of the box</p>
+		<ng2-google-recaptcha [recaptchaId]="recaptcha1Id" [siteKey]="recaptchaSiteKey" (onCaptchaComplete)="onCaptchaComplete($event)"></ng2-google-recaptcha>
+        <br><br>
+        <p class="samples-screen-body-text">reCAPTCHA using the audio and 'dark' theme</p>
+        <ng2-google-recaptcha [recaptchaId]="recaptcha2Id" [siteKey]="recaptchaSiteKey" [captchaStyle]="recaptchaStyle" (onCaptchaComplete)="onCaptchaComplete($event)"></ng2-google-recaptcha>
+	</div>
+</div>
