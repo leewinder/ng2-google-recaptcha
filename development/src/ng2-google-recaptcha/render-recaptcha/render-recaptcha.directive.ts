@@ -22,6 +22,8 @@ export class RenderRecaptchaDirective implements OnInit {
 
     @Input('recaptchaId') recaptchaId: string = null;
 
+    private recaptchaRenderElement: any = null;
+
     //
     // Element has been initialised
     //
@@ -32,7 +34,9 @@ export class RenderRecaptchaDirective implements OnInit {
 
             // Build up the style of the recaptcha and render
             let recaptchaStyle = this.buildRecaptchaProperties();
-            grecaptcha.render(this.recaptchaId, recaptchaStyle);
+            let recaptchaElement = document.getElementById(this.recaptchaId);
+
+            this.recaptchaRenderElement = grecaptcha.render(recaptchaElement, recaptchaStyle);
 
         }, this.renderDelay);
 
@@ -74,7 +78,14 @@ export class RenderRecaptchaDirective implements OnInit {
     // Called when a recaptcha has expired
     //
     private onRecaptchaExpired() {
-        grecaptcha.reset(this.recaptchaId);
+
+        // Check we have an element
+        if (this.recaptchaRenderElement === null) {
+            return;
+        }
+
+        // Reset the recaptcha
+        grecaptcha.reset(this.recaptchaRenderElement);
         this.onCaptchaComplete.emit(null);
     }
 }
