@@ -24,7 +24,9 @@
         "typescript",
         "google",
         "recpatcha",
-        "no captcha"
+        "no captcha",
+        "gcaptcha",
+        "grecaptcha"
     ],
     "scripts": {
         "postinstall": "typings install",
