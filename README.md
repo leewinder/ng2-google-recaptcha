@@ -19,7 +19,7 @@ An Angular 2 module implementing Google's reCAPTCHA that actually works, require
 
 <br>
 
-![](https://cloud.githubusercontent.com/assets/1649415/18009234/3c180d48-6ba3-11e6-9f21-c71d3b1f7bd8.gif)
+![](https://cloud.githubusercontent.com/assets/1649415/19627247/731fa85e-993a-11e6-9a3d-24dec5d15de0.gif)
 
 ## Dependancies
 Currently built against Angular ^2.0.0
@@ -60,17 +60,6 @@ ng2-google-recaptcha has the following additional dependancies
 
 ## Usage
 
-All the examples shown below are taken from the [samples application](https://github.com/leewinder/ng2-google-recaptcha/tree/master/samples).
-
-### Building and Running the Sample Application
-Check out the repository, browse to the './samples' folder and run `npm install` to install all the required dependancies.
-
-**Note**: Running `npm install` on the sample project requires that Python 2.7.x is available on the command line as it runs a couple of Python scripts to correctly set up the npm_modules folder.
-
-ng2-google-recaptcha is developed in [Visual Studio Code](https://code.visualstudio.com/) so once `npm install` has finished you should be able to open the './samples' folder in VS Code and it will run out of the box (by default it uses lite-server which is installed as part of `npm install`).
-
-If you are not using Visual Studio Code, browse to the './samples' folder and run `tsc` to build the application.  Then open your local server of choice pointing to ./samples as the root directory.
-
 ### Importing The 'ng2-google-recaptcha' Module
 To use ng2-google-recaptcha, you need to import the Ng2GoogleRecaptchaModule into the relevent module in your application.  In the sample application this is done in the entry module - [app.module.ts](https://github.com/leewinder/ng2-google-recaptcha/blob/master/samples/src/app/app.module.ts)
 
@@ -92,6 +81,99 @@ import { Ng2GoogleRecaptchaModule }  from 'ng2-google-recaptcha';
 })
 export class AppModule { }
 ```
+
+<br>
+
+### Adding a reCAPTCHA
+
+To add a reCAPTCHA all you need is to link to Google's reCAPTCHA script, a [site key](https://developers.google.com/recaptcha/), and a response callback.
+
+Add the following to your `<head>` tag in your main HTML page
+* `<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>`
+
+The following is the most basic component to implement the reCAPTCHA
+
+```TypeScript
+@Component({
+    template: `<ng2-google-recaptcha 
+                  [siteKey]="recaptchaSiteKey" 
+                  (onCaptchaComplete)="onCaptchaComplete($event)">
+               </ng2-google-recaptcha>`,
+})
+export class BasicComponent {
+
+	private recaptchaSiteKey = 'YOUR-RECAPTCHA-SITE-KEY-HERE';
+
+	private onCaptchaComplete(response: string) {
+        console.log('reCAPTCHA response recieved:');
+        console.log(response);
+    }
+}
+```
+
+Once `BasicComponent.onCaptchaComplete` is called, the response element will contain the following attributes
+* success: True is the request succeeded, False otherwise
+* token: The validation token which can be used to [validate the users response](https://developers.google.com/recaptcha/docs/verify)
+
+If the users response times out, `BasicComponent.onCaptchaComplete` will be automatically called with a failed response and a null token, requiring the user to restart the process.
+
+<br>
+
+### Additional reCAPTCHA Options
+
+When specifying `<ng2-google-recaptcha>` you can pass through the following additional properties
+* captchaStyle: An object containing the style of the reCAPTCHA to render (see the code example below)
+* renderDelay: A delay (in milliseconds) before the reCAPTCHA renders on screen (defaults to 500ms)
+* recaptchaId: When using multiple reCAPTCHA elements, a unique ID that identifies this element
+
+```TypeScript
+@Component({
+    template: `<ng2-google-recaptcha 
+                  
+                  [captchaStyle]="recaptchaStyle" 
+                  [renderDelay]="delayToRender" 
+                  [recaptchaId]="thisRecaptchaId" 
+                  
+                  [siteKey]="recaptchaSiteKey" 
+                  
+                  (onCaptchaComplete)="onCaptchaComplete($event)">
+                  
+               </ng2-google-recaptcha>`,
+})
+export class BasicComponent {
+
+	private recaptchaSiteKey: string = 'YOUR-RECAPTCHA-SITE-KEY-HERE';
+
+  private delayToRender: number = 1000; // A one second delay before rendering this element
+  private thisRecaptchaId: string = 'this-is-my-unique-id'; // ID to uniquely identify this reCAPTCHA
+  
+  // Style to use - all properties are optional and the style can be ommitted completely
+  private recaptchaStyle = {
+        theme: 'dark',     // Uses the Dark theme for this reCAPTCHA
+        type: 'audio',     // Use the audio version for user verification
+        size: 'compact',   // Use the compact style 
+        tabindex: 0,       // Tab Index for this element
+  };
+  
+  
+
+	private onCaptchaComplete(response: string) {
+        console.log('reCAPTCHA response recieved:');
+        console.log(response);
+    }
+}
+```
+
+<br>
+
+### Building and Running the Sample Application
+Check out the repository, browse to the './samples' folder and run `npm install` to install all the required dependancies.
+
+**Note**: Running `npm install` on the sample project requires that Python 2.7.x is available on the command line as it runs a couple of Python scripts to correctly set up the npm_modules folder.
+
+ng2-google-recaptcha is developed in [Visual Studio Code](https://code.visualstudio.com/) so once `npm install` has finished you should be able to open the './samples' folder in VS Code and it will run out of the box (by default it uses lite-server which is installed as part of `npm install`).
+
+If you are not using Visual Studio Code, browse to the './samples' folder and run `tsc` to build the application.  Then open your local server of choice pointing to ./samples as the root directory.
 
 <br>
 
