@@ -211,5 +211,8 @@ If you are not using Visual Studio Code, browse to the './samples' folder and ru
 
 ## Change Log
 
+### 1.1.0
+* Added ability to reset the reCAPTCH using CreateRecaptchaComponent:resetRecaptcha
+
 ### 1.0.0
 * Initial release
