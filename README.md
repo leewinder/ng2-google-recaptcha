@@ -104,9 +104,10 @@ export class BasicComponent {
 
 	private recaptchaSiteKey = 'YOUR-RECAPTCHA-SITE-KEY-HERE';
 
-	private onCaptchaComplete(response: string) {
+	private onCaptchaComplete(response: any) {
         console.log('reCAPTCHA response recieved:');
-        console.log(response);
+        console.log(response.success);
+        console.log(response.token);
     }
 }
 ```
@@ -114,6 +115,7 @@ export class BasicComponent {
 Once `BasicComponent.onCaptchaComplete` is called, the response element will contain the following attributes
 * success: True is the request succeeded, False otherwise
 * token: The validation token which can be used to [validate the users response](https://developers.google.com/recaptcha/docs/verify)
+* recaptcha: The ng2-google-recpatcha instance this response was generated on
 
 If the users response times out, `BasicComponent.onCaptchaComplete` will be automatically called with a failed response and a null token, requiring the user to restart the process.
 
@@ -161,6 +163,36 @@ export class BasicComponent {
         console.log('reCAPTCHA response recieved:');
         console.log(response);
     }
+}
+```
+
+<br>
+
+### Resetting a reCAPTCHA
+
+If you require the user to redo the reCAPTCHA, you can call `resetRecaptcha` which will reload the reCAPTCHA and call the `onCaptchaComplete` callback with a null token allowing it to be reset.
+
+```TypeScript
+@Component({
+  // ...
+})
+export class BasicComponent {
+
+  // How you get hold of the reCAPTCHA instance is up to you
+  @ViewChild(CreateRecaptchaComponent)
+  private recaptchaInstance: CreateRecaptchaComponent;
+
+  // Function called after we have used the reCAPTCHA token
+  private serverResponse() {
+    // ...
+
+    // If we received an error requiring the reCAPTCH to be done again,
+    // reset the element causing the previous token to be reset
+    recaptchaInstance.resetRecaptcha();
+
+    // ...
+  }
+
 }
 ```
 

@@ -43,6 +43,14 @@ export class RenderRecaptchaDirective implements OnInit {
     };
 
     //
+    // Resets the reCAPTCHA instance and requires the user to revalidate
+    //
+    resetRecaptcha() {
+        // Expire the current instance
+        this.onRecaptchaExpired();
+    }
+
+    //
     // Builds up the style of the recaptcha
     //
     private buildRecaptchaProperties() {

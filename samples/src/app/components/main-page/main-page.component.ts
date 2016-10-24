@@ -23,10 +23,18 @@ export class MainPageComponent {
     //
     // Called when the Captcha has finished
     //
-    private onCaptchaComplete(response: string) {
+    private onCaptchaComplete(response: any) {
 
         console.log('reCAPTCHA response recieved:');
         console.log(response);
+
+        // If we succeeded, reset it in a couple of seconds as
+        // part of the demo showing how to use it
+        if (response.success === true) {
+            setTimeout(() => {
+                response.recaptcha.resetRecaptcha();
+            }, 2000);
+        }
     }
-    /* tslint:disable:no-unused-variable */
+    /* tslint:enable:no-unused-variable */
 }

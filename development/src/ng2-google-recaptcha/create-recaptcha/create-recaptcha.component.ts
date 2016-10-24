@@ -1,5 +1,6 @@
 // Imports
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
+import { RenderRecaptchaDirective } from '../render-recaptcha/render-recaptcha.directive';
 
 //
 // Main recpatcha component
@@ -27,6 +28,9 @@ export class CreateRecaptchaComponent implements OnInit {
 
     @Input('recaptchaId') recaptchaId: string = 'grecaptcha';
 
+    @ViewChild(RenderRecaptchaDirective)
+    private recaptchaInstance: RenderRecaptchaDirective;
+
     //
     // Called to initialise the object
     //
@@ -34,20 +38,35 @@ export class CreateRecaptchaComponent implements OnInit {
     }
 
     //
+    // Resets the current reCAPTCHA
+    //
+    resetRecaptcha() {
+
+        // Reset the instance if we have one
+        if (this.recaptchaInstance != null) {
+            this.recaptchaInstance.resetRecaptcha();
+        }
+    }
+
+    //
     // Called when the Captcha has finished
     //
-    onCaptchaCompleted(data: string) {
+    /* tslint:disable:no-unused-variable */
+    private onCaptchaCompleted(data: string) {
+        /* tslint:enable:no-unused-variable */
 
         // Pass through whether we succeeded or not
         if (data != null) {
             this.onCaptchaComplete.emit({
                 success: true,
                 token: data,
+                recaptcha: this,
             });
         } else {
             this.onCaptchaComplete.emit({
                 success: false,
                 token: null,
+                recaptcha: this,
             });
         }
     }
