@@ -7,7 +7,6 @@ import { RenderRecaptchaDirective } from '../render-recaptcha/render-recaptcha.d
 //
 @Component({
 
-    moduleId: module.id,
     selector: 'ng2-google-recaptcha',
 
     template: `<div id="{{recaptchaId}}" ng2GoogleRecaptchaRender (onCaptchaComplete)="onCaptchaCompleted($event)"
