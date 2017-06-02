@@ -36,8 +36,21 @@ export class RenderRecaptchaDirective implements OnInit {
             let recaptchaStyle = this.buildRecaptchaProperties();
             let recaptchaElement = document.getElementById(this.recaptchaId);
 
-            this.recaptchaRenderElement = grecaptcha.render(recaptchaElement, recaptchaStyle);
-
+            var self = this;
+            try {
+                    var script = document.createElement('script');
+                    script.src = 'https://www.google.com/recaptcha/api.js';
+                    script.async = true;
+                    script.defer = true;
+                    script.onload = function(){
+                        setTimeout(function(){
+                            self.recaptchaRenderElement = grecaptcha.render(recaptchaElement, recaptchaStyle);
+                        }, 1000)
+                    }
+                    document.getElementsByTagName('head')[0].appendChild(script);
+            } catch(error) {
+                console.log(error);
+            }
         }, this.renderDelay);
 
     };
