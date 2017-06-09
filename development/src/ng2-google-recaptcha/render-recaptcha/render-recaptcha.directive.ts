@@ -36,16 +36,16 @@ export class RenderRecaptchaDirective implements OnInit {
             let recaptchaStyle = this.buildRecaptchaProperties();
             let recaptchaElement = document.getElementById(this.recaptchaId);
 
-            var script = document.createElement('script');
+            let script = document.createElement('script');
             script.src = 'https://www.google.com/recaptcha/api.js';
             script.async = true;
             script.defer = true;
-            var self = this;
+            let self = this;
             script.onload = function(){
                 setTimeout(function(){
                     self.recaptchaRenderElement = grecaptcha.render(recaptchaElement, recaptchaStyle);
-                }, 1000)
-            }
+                }, 1000);
+            };
             document.getElementsByTagName('head')[0].appendChild(script);
         }, this.renderDelay);
 
