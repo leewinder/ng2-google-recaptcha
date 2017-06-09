@@ -22,10 +22,10 @@ An Angular 2 module implementing Google's reCAPTCHA that actually works, require
 ![](https://cloud.githubusercontent.com/assets/1649415/19627247/731fa85e-993a-11e6-9a3d-24dec5d15de0.gif)
 
 ## Dependancies
-Currently built against Angular ^2.0.0
+Currently built against Angular ^4.1.3 and Typescript ^2.3.2
 
 ng2-google-recaptcha has the following additional dependancies
-- [Typings](https://www.npmjs.com/package/tslerp): `npm install typings --global`
+- [Typings](https://www.npmjs.com/package/typings): `npm install typings --global`
 
 <br>
 
@@ -210,6 +210,11 @@ If you are not using Visual Studio Code, browse to the './samples' folder and ru
 <br>
 
 ## Change Log
+
+### 1.2.0
+* Updated to Angular ^4.1.3 and Typescript ^2.3.2
+* [Bug Fix] Changed moduleId from using module.id to __filename [#2](https://github.com/leewinder/ng2-google-recaptcha/pull/2)
+* [Bug Fix] Delay added before Google reCAPTCHA library is loaded [#5](https://github.com/leewinder/ng2-google-recaptcha/pull/5)
 
 ### 1.1.0
 * Added ability to reset the reCAPTCH using CreateRecaptchaComponent:resetRecaptcha
