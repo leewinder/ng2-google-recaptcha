@@ -87,8 +87,8 @@ def main():
     shutil.copyfile(root_folder + 'development/package.json', distribution_folder + 'package.json')
 
     # Copy over all the source files
-    distutils.dir_util.copy_tree(root_folder + 'development/src/lib', distribution_folder)
-
+    distutils.dir_util.copy_tree(root_folder + 'development/src/ng2-google-recaptcha',
+                                 distribution_folder)
 
 #
 # Main entry point

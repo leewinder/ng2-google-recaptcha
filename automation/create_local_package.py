@@ -50,7 +50,8 @@ def main():
 
     # Move the file we just created
     package_made = std_out.strip()
-    shutil.move(package_path + package_made, package_path + '../tslerp.tgz')
+    shutil.move(package_path + package_made, package_path + '../ng2-google-recaptcha.tgz')
+
 
     # Done
     print "Successfully created package file " + package_made
