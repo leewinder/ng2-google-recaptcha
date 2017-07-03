@@ -10,3 +10,4 @@ samples/typings
 samples/src/**/*.js.map
 samples/src/**/*.js
 samples/src/**/*.d.ts
+.idea
