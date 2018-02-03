@@ -29,7 +29,7 @@ export class CreateRecaptchaComponent implements OnInit {
     @Input('recaptchaId') recaptchaId: string = 'grecaptcha';
 
     @ViewChild(RenderRecaptchaDirective)
-    private recaptchaInstance: RenderRecaptchaDirective;
+    public recaptchaInstance: RenderRecaptchaDirective;
 
     //
     // Called to initialise the object
@@ -52,7 +52,7 @@ export class CreateRecaptchaComponent implements OnInit {
     // Called when the Captcha has finished
     //
     /* tslint:disable:no-unused-variable */
-    private onCaptchaCompleted(data: string) {
+    public onCaptchaCompleted(data: string) {
         /* tslint:enable:no-unused-variable */
 
         // Pass through whether we succeeded or not
