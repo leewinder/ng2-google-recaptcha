@@ -1,6 +1,6 @@
 {
     "name": "ng2-google-recaptcha",
-    "version": "4.0.0",
+    "version": "5.0.0",
     "license": "MIT",
     "description": "Angular component implementing Google's reCAPTCHA",
     "private": false,
