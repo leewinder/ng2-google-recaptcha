@@ -15,24 +15,24 @@
 
 ## Overview
 
-An Angular 2 module implementing Google's reCAPTCHA that actually works, requires no additional dependancies and only needs a single import.
+An Angular module implementing Google's reCAPTCHA that actually works, requires no additional dependancies and only needs a single import.
 
 <br>
 
 ![](https://cloud.githubusercontent.com/assets/1649415/19627247/731fa85e-993a-11e6-9a3d-24dec5d15de0.gif)
 
 ## Dependancies
-Currently built against Angular ^4.1.3 and Typescript ^2.3.2
+Currently built against Angular ^4.1.3 and Typescript ^2.6.2
 
 ng2-google-recaptcha has the following additional dependancies
-- [Typings](https://www.npmjs.com/package/typings): `npm install typings --global`
+- [TsLerp](https://www.npmjs.com/package/tslerp): Typescript library for lerping single and multi-sample data sets over time
 
 <br>
 
 ## Installation
 1. Add the package to your 'dependencies' list in `package.json` and run `npm install`
 
-  `"ng2-google-recaptcha": "^1.0.0"`
+  `"ng2-google-recaptcha": "^4.0.0"`
   
   Optionally, you can manually install the package using the npm command line
 
@@ -210,6 +210,10 @@ If you are not using Visual Studio Code, browse to the './samples' folder and ru
 <br>
 
 ## Change Log
+
+### 4.0.0
+* Removed dependency on typings
+* Updated to Typescript ^2.6.2
 
 ### 1.2.0
 * Updated to Angular ^4.1.3 and Typescript ^2.3.2
